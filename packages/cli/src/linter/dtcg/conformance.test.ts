@@ -21,7 +21,10 @@ import { lint } from '../lint.js';
 import { DtcgEmitterHandler } from './handler.js';
 
 describe('DTCG Conformance', () => {
-  test('Terrazzo can parse our DTCG output and generate CSS', () => {
+  // Skipped: @terrazzo/token-types@^2.4.0 was removed from npm (404).
+  // This test depends on installing Terrazzo from the public registry.
+  // Re-enable once Terrazzo publishes a fix. See: https://github.com/google-labs-code/design.md/issues/106
+  test.skip('Terrazzo can parse our DTCG output and generate CSS', () => {
     const fixtureContent = `---
 name: Test Brand
 colors:
@@ -81,7 +84,7 @@ export default defineConfig({
 
       // Install dependencies in temp dir so they can be imported in config
       // Using bun add should be fast if cached
-      const customPath = `${process.env.PATH || ''}:/Users/dalmaer/.bun/bin`;
+      const customPath = process.env.PATH || '';
       const installProc = spawnSync('bun', ['add', '@terrazzo/cli', '@terrazzo/plugin-css'], {
         cwd: tmpDir,
         env: { ...process.env, PATH: customPath },
